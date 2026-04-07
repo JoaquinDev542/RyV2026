@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rock & Vida España — Asociación Civil</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- ========== NAV ========== -->
+<nav id="nav">
+  <a href="#inicio">
+    <img class="nav-logo" src="logo_Ry_V_1.png" alt="Rock & Vida España"
+      onerror="this.style.display='none';document.getElementById('nav-text').style.display='block'">
+    <span id="nav-text" style="display:none;font-family:'Bebas Neue',sans-serif;font-size:1.35rem;color:#fff;letter-spacing:0.04em">ROCK <span style="color:#CC1A1A">&</span> VIDA</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#sobre">Nosotros</a></li>
+    <li><a href="#actividades">Actividades</a></li>
+    <li><a href="#galeria">Galería</a></li>
+    <li><a href="#testimonios">Testimonios</a></li>
+    <li><a href="#contacto">Contacto</a></li>
+  </ul>
+  <a href="#unete" class="nav-cta">Únete</a>
+  <button class="hamburger" id="hamburger" aria-label="Menú">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#sobre" onclick="closeMobile()">Nosotros</a>
+  <a href="#actividades" onclick="closeMobile()">Actividades</a>
+  <a href="#galeria" onclick="closeMobile()">Galería</a>
+  <a href="#testimonios" onclick="closeMobile()">Testimonios</a>
+  <a href="#contacto" onclick="closeMobile()">Contacto</a>
+  <a href="#unete" onclick="closeMobile()">Únete ahora</a>
+</div>
+
+<!-- ========== HERO ========== -->
+<section class="hero" id="inicio">
+  <div class="hero-bg-layer"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-accent"></div>
+  <div class="hero-content">
+    <div class="hero-logo-wrap">
+      <img class="hero-logo" src="logo_Ry_V_1.png" alt="Rock & Vida España"
+        onerror="this.style.display='none'">
+    </div>
+    <div class="hero-badge">
+      <div class="badge-dot"></div>
+      Asociación activa en España
+    </div>
+    <h1>Actividades que<br><em>suman</em> al mundo</h1>
+    <p class="hero-sub">Organizamos talleres, torneos, senderismo y eventos que conectan personas y mejoran la sociedad. ¡Únete a la comunidad!</p>
+    <div class="hero-btns">
+      <a href="#actividades" class="btn-primary">Ver actividades</a>
+      <a href="#unete" class="btn-outline">Hazte socio</a>
+    </div>
+    <div class="hero-locations">
+      <span class="hero-loc">
+        <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+        Arganda del Rey, Madrid
+      </span>
+      <span class="hero-loc">
+        <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+        Barcelona
+      </span>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <span>Scroll</span>
+    <div class="scroll-arrow"></div>
+  </div>
+</section>
+
+<!-- ========== SOBRE NOSOTROS ========== -->
+<section class="section sobre" id="sobre">
+  <div class="container">
+    <div class="sobre-grid">
+      <div class="sobre-text">
+        <span class="tag">Sobre nosotros</span>
+        <h2 class="section-title">Una comunidad<br>con corazón</h2>
+        <p>Rock & Vida España es una asociación civil sin ánimo de lucro comprometida con la mejora de la sociedad a través de la cultura, el deporte y la convivencia.</p>
+        <p>Desde nuestra sede principal en Arganda del Rey hasta nuestro activo grupo en Barcelona, organizamos actividades para todas las edades que fomentan la integración, la salud y el bienestar colectivo.</p>
+        <p>Creemos que cualquier actividad que sume positivamente tiene un lugar en nuestra asociación. ¡Si lo piensas, lo organizamos!</p>
+        <div class="sobre-stats">
+          <div class="stat-box">
+            <div class="stat-num">2</div>
+            <div class="stat-label">Sedes activas</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-num">+50</div>
+            <div class="stat-label">Actividades / año</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-num">100%</div>
+            <div class="stat-label">Sin ánimo de lucro</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-num">∞</div>
+            <div class="stat-label">Ganas de sumar</div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="sede-card">
+          <div class="sede-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+          </div>
+          <div>
+            <h4>Sede principal — Arganda del Rey</h4>
+            <p>Leonor de Cortinas 25, Arganda del Rey, Madrid<br>Nuestro local principal con actividades presenciales todo el año.</p>
+          </div>
+        </div>
+        <div class="sede-card">
+          <div class="sede-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+          </div>
+          <div>
+            <h4>Grupo de Barcelona</h4>
+            <p>Barcelona, Cataluña<br>Nuestro grupo activo en Barcelona lleva la esencia de Rock & Vida a la ciudad condal.</p>
+          </div>
+        </div>
+        <div class="sede-card">
+          <div class="sede-icon">
+            <svg viewBox="0 0 24 24"><path d="M17 12h-5v5h5v-5zM16 1v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2h-1V1h-2zm3 18H5V8h14v11z"/></svg>
+          </div>
+          <div>
+            <h4>Actividades todo el año</h4>
+            <p>Siempre hay algo en marcha. Consulta nuestra agenda y apúntate a la próxima actividad.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== ACTIVIDADES ========== -->
+<section class="section actividades" id="actividades">
+  <div class="container">
+    <span class="tag">Actividades</span>
+    <h2 class="section-title" style="color:#fff">Lo que hacemos</h2>
+    <p class="act-intro">Desde competiciones de ajedrez hasta rutas por la sierra — hay algo para cada persona.</p>
+    <div class="act-grid">
+      <div class="act-card">
+        <span class="act-icon">♟️</span>
+        <h3>Torneos de Ajedrez</h3>
+        <p>Competiciones para todos los niveles. Fomenta la concentración, la estrategia y el pensamiento crítico.</p>
+      </div>
+      <div class="act-card">
+        <span class="act-icon">🏓</span>
+        <h3>Torneos de Ping Pong</h3>
+        <p>Partidas individuales y por equipos. Un deporte para todas las edades que promueve reflejos y compañerismo.</p>
+      </div>
+      <div class="act-card">
+        <span class="act-icon">🥾</span>
+        <h3>Senderismo</h3>
+        <p>Rutas por los alrededores de Madrid y más allá. Naturaleza, salud y comunidad al aire libre.</p>
+      </div>
+      <div class="act-card">
+        <span class="act-icon">🎨</span>
+        <h3>Talleres creativos</h3>
+        <p>Manualidades, arte, música y más. Espacios para expresarse y aprender en un ambiente inclusivo.</p>
+      </div>
+      <div class="act-card">
+        <span class="act-icon">🎪</span>
+        <h3>Eventos comunitarios</h3>
+        <p>Festivales, jornadas de convivencia y encuentros culturales que refuerzan los lazos sociales.</p>
+      </div>
+      <div class="act-card">
+        <span class="act-icon">✨</span>
+        <h3>¡Y mucho más!</h3>
+        <p>Siempre estamos buscando nuevas formas de sumar. Si tienes una idea, ¡cuéntanosla!</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== GALERÍA ========== -->
+<section class="section galeria" id="galeria">
+  <div class="container">
+    <span class="tag">Galería</span>
+    <h2 class="section-title">Momentos Rock & Vida</h2>
+    <p class="gallery-intro">Capturas de nuestros torneos, rutas y eventos. Cada actividad deja huella.</p>
+    <div class="gallery-grid">
+      <!-- Imagen grande destacada -->
+      <div class="gal-item">
+        <img src="https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?w=800&q=80" alt="Actividad grupal Rock & Vida" loading="lazy">
+        <div class="gal-overlay"><span class="gal-label">Comunidad</span></div>
+      </div>
+      <!-- Ajedrez -->
+      <div class="gal-item">
+        <img src="https://images.unsplash.com/photo-1586165368502-1bad197a6461?w=600&q=80" alt="Torneo de ajedrez" loading="lazy">
+        <div class="gal-overlay"><span class="gal-label">Torneo de Ajedrez</span></div>
+      </div>
+      <!-- Senderismo -->
+      <div class="gal-item">
+        <img src="https://images.unsplash.com/photo-1551632811-561732d1e306?w=600&q=80" alt="Senderismo" loading="lazy">
+        <div class="gal-overlay"><span class="gal-label">Senderismo</span></div>
+      </div>
+      <!-- Ping pong -->
+      <div class="gal-item">
+        <img src="https://images.unsplash.com/photo-1534158914592-062992fbe900?w=600&q=80" alt="Ping pong" loading="lazy">
+        <div class="gal-overlay"><span class="gal-label">Ping Pong</span></div>
+      </div>
+      <!-- Taller -->
+      <div class="gal-item">
+        <img src="https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?w=600&q=80" alt="Taller" loading="lazy">
+        <div class="gal-overlay"><span class="gal-label">Talleres</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== TESTIMONIOS ========== -->
+<section class="section testimonios" id="testimonios">
+  <div class="container">
+    <span class="tag">Testimonios</span>
+    <h2 class="section-title">Lo que dice nuestra comunidad</h2>
+    <p class="test-intro">Personas reales, experiencias reales. Esto es Rock & Vida España.</p>
+    <div class="test-grid">
+
+      <div class="test-card" style="padding-top:3rem;">
+        <span class="test-featured">Destacado</span>
+        <span class="test-quote">"</span>
+        <div class="test-stars">
+          <div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div>
+        </div>
+        <p class="test-text">Desde que me uní a Rock & Vida España, mi vida social cambió completamente. Los torneos de ajedrez son una pasada y la gente es increíble. Me siento parte de una familia.</p>
+        <div class="test-author">
+          <div class="test-avatar" style="background:#CC1A1A;">MA</div>
+          <div>
+            <div class="test-name">Miguel Ángel R.</div>
+            <div class="test-role">Socio desde 2022 · Arganda del Rey</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="test-card">
+        <span class="test-quote">"</span>
+        <div class="test-stars">
+          <div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div>
+        </div>
+        <p class="test-text">Las rutas de senderismo son lo mejor. Conocí a gente fantástica y ahora somos un grupo muy unido. Además, la organización siempre es perfecta. ¡Muy recomendable!</p>
+        <div class="test-author">
+          <div class="test-avatar" style="background:#2563eb;">LG</div>
+          <div>
+            <div class="test-name">Laura G.</div>
+            <div class="test-role">Socia desde 2023 · Barcelona</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="test-card">
+        <span class="test-quote">"</span>
+        <div class="test-stars">
+          <div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div>
+        </div>
+        <p class="test-text">Me apunté a los talleres creativos sin esperarme mucho y me sorprendieron. El ambiente es muy acogedor y siempre hay actividades nuevas. ¡Lo recomiendo a todo el mundo!</p>
+        <div class="test-author">
+          <div class="test-avatar" style="background:#059669;">PS</div>
+          <div>
+            <div class="test-name">Patricia S.</div>
+            <div class="test-role">Socia desde 2024 · Arganda del Rey</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ========== ÚNETE ========== -->
+<section class="section unete" id="unete">
+  <div class="container">
+    <div class="unete-inner">
+      <div>
+        <span class="tag">Hazte socio</span>
+        <h2 class="section-title">Únete a la<br>comunidad</h2>
+        <p class="unete-intro">Formar parte de Rock & Vida España es mucho más que apuntarte a actividades. Es unirte a una comunidad que cree en el poder de las personas para hacer el mundo mejor.</p>
+        <ul class="benefits">
+          <li><div class="check"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div>Acceso a todos los talleres y eventos</li>
+          <li><div class="check"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div>Participa en torneos de ajedrez y ping pong</li>
+          <li><div class="check"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div>Únete a las rutas de senderismo</li>
+          <li><div class="check"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div>Propón nuevas actividades e ideas</li>
+          <li><div class="check"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div>Comunidad en Arganda del Rey y Barcelona</li>
+          <li><div class="check"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div>Sin ánimo de lucro — para todos y todas</li>
+        </ul>
+      </div>
+      <div class="form-card">
+        <h3>Quiero unirme</h3>
+        <p>Rellena el formulario y nos ponemos en contacto contigo</p>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Nombre</label>
+            <input type="text" placeholder="Tu nombre">
+          </div>
+          <div class="form-group">
+            <label>Apellidos</label>
+            <input type="text" placeholder="Tus apellidos">
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" placeholder="tu@email.com">
+        </div>
+        <div class="form-group">
+          <label>Teléfono</label>
+          <input type="tel" placeholder="+34 600 000 000">
+        </div>
+        <div class="form-group">
+          <label>Sede de interés</label>
+          <select>
+            <option value="">Selecciona una opción</option>
+            <option>Arganda del Rey (Madrid)</option>
+            <option>Barcelona</option>
+            <option>Ambas</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>¿Por qué quieres unirte?</label>
+          <textarea placeholder="Cuéntanos un poco sobre ti y qué actividades te interesan..."></textarea>
+        </div>
+        <button class="btn-submit" onclick="handleSubmit(this)">Enviar solicitud →</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== CONTACTO ========== -->
+<section class="section contacto" id="contacto">
+  <div class="container">
+    <div class="contacto-grid">
+      <div>
+        <span class="tag">Contacto</span>
+        <h2 class="section-title">Estamos aquí</h2>
+        <div class="contact-info">
+          <div class="contact-item">
+            <div class="c-icon">
+              <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+            </div>
+            <div>
+              <h4>Sede principal</h4>
+              <p>Leonor de Cortinas 25<br>Arganda del Rey, Madrid</p>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="c-icon">
+              <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+            </div>
+            <div>
+              <h4>Grupo Barcelona</h4>
+              <p>Barcelona, Cataluña<br>Activos en toda la ciudad</p>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="c-icon">
+              <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+            </div>
+            <div>
+              <h4>Email</h4>
+              <p>info@rockyvida.es<br>Respondemos en menos de 48h</p>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="c-icon">
+              <svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+            </div>
+            <div>
+              <h4>Redes sociales</h4>
+              <p>Síguenos para enterarte de<br>todas nuestras actividades</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="map-wrap">
+          <iframe
+            src="https://www.google.com/maps?q=Leonor+de+Cortinas+25,+Arganda+del+Rey,+Madrid&output=embed"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            title="Sede Rock & Vida España — Arganda del Rey">
+          </iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== FOOTER ========== -->
+<footer>
+  <img class="footer-logo" src="logo_Ry_V_1.png" alt="Rock & Vida España"
+    onerror="this.style.display='none'">
+  <ul class="footer-links">
+    <li><a href="#sobre">Nosotros</a></li>
+    <li><a href="#actividades">Actividades</a></li>
+    <li><a href="#galeria">Galería</a></li>
+    <li><a href="#testimonios">Testimonios</a></li>
+    <li><a href="#unete">Únete</a></li>
+    <li><a href="#contacto">Contacto</a></li>
+  </ul>
+  <div class="footer-divider"></div>
+  <p class="footer-copy">
+    &copy; 2025 Rock &amp; Vida España · Asociación Civil Sin Ánimo de Lucro<br>
+    Leonor de Cortinas 25, Arganda del Rey, Madrid · <a href="mailto:info@rockyvida.es">info@rockyvida.es</a>
+  </p>
+</footer>
+
+<script src="index.js"></script>
+</body>
+</html>
