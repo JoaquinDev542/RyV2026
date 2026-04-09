@@ -973,7 +973,6 @@ table {
     }
  
     @media (max-width: 500px) {
-      body { padding: 1rem; }
       .gallery-grid { grid-template-columns: 1fr; }
       .item-main   { grid-column: 1/2; height: 200px; }
       .item-chess, .item-hike { grid-column: 1/2; height: 160px; }
