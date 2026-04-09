@@ -833,7 +833,7 @@ table {
  
     /* posiciones del grid */
     .item-main   { grid-column: 1/2; grid-row: 1/2; height: 380px; }
-    .item-chess  { grid-column: 2/3; grid-row: 1/2; height: 185px; }
+    .item-chess  { grid-column: 2/3; grid-row: 1/2; height: 100%; }
     .item-hike   { grid-column: 2/3; grid-row: 2/3; height: 185px; }
  
     .bottom-row {
