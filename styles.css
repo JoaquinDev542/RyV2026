@@ -661,7 +661,8 @@
     transition: transform .3s ease;
   }
 
-  .act-card:hover {
+
+  /*   .act-card:hover {
     background: rgba(255, 255, 255, 0.07);
     border-color: rgba(204, 26, 26, 0.35);
     transform: translateY(-4px);
@@ -670,6 +671,7 @@
   .act-card:hover::before {
     transform: scaleX(1);
   }
+    */
 
   .act-icon {
     font-size: 2rem;
@@ -1195,6 +1197,14 @@
 
   .footer-copy a {
     color: var(--rojo);
+  }
+
+  .logo-whatsapp {
+    position: fixed;
+    bottom: 1.25rem;
+    right: 1.25rem;;
+    display: inline-block;
+    
   }
 
   /* ===== RESPONSIVE ===== */
