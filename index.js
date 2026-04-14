@@ -1,18 +1,20 @@
- // Hamburger menu
- const hamburger = document.getElementById('hamburger');
- const mobileMenu = document.getElementById('mobileMenu');
- hamburger.addEventListener('click', () => {
-   mobileMenu.classList.toggle('open');
- });
- function closeMobile() {
-   mobileMenu.classList.remove('open');
- }
+const hamburger = document.getElementById('hamburger');
+const mobileMenu = document.getElementById('mobileMenu');
 
- // Cerrar menú al hacer scroll
- window.addEventListener('scroll', () => {
-   mobileMenu.classList.remove('open');
- });
+hamburger.addEventListener('click', () => {
+  mobileMenu.classList.toggle('open');
+  hamburger.classList.toggle('open');
+});
 
+function closeMobile() {
+  mobileMenu.classList.remove('open');
+  hamburger.classList.remove('open');
+}
+
+window.addEventListener('scroll', () => {
+  mobileMenu.classList.remove('open');
+  hamburger.classList.remove('open');
+});
  /*
     =====================================================
       CATEGORÍAS — solo cambia los src cuando tengas
@@ -228,10 +230,14 @@
     });
   }
 
-  prevBtn.addEventListener('click', () => goTo(current - 1));
+  prevBtn.addEventListener('click', () => {
+    goTo(current - 1);
+    resetAutoPlay();
+  });
   nextBtn.addEventListener('click', () => {
     const maxIndex = Math.max(0, total - getVisible());
     goTo(current >= maxIndex ? 0 : current + 1);
+    resetAutoPlay();
   });
 
   // Swipe táctil
@@ -239,18 +245,27 @@
   track.addEventListener('touchstart', e => { startX = e.touches[0].clientX; }, { passive: true });
   track.addEventListener('touchend', e => {
     const diff = startX - e.changedTouches[0].clientX;
-    if (Math.abs(diff) > 50) diff > 0 ? goTo(current + 1) : goTo(current - 1);
+    if (Math.abs(diff) > 50) {
+      diff > 0 ? goTo(current + 1) : goTo(current - 1);
+      resetAutoPlay();
+    }
   });
 
   // Auto-avance cada 5s
-  let autoTimer = setInterval(() => {
-    const maxIndex = Math.max(0, total - getVisible());
-    goTo(current < maxIndex ? current + 1 : 0);
-  }, 5000);
-
-  [prevBtn, nextBtn].forEach(btn => btn.addEventListener('click', () => {
+  let autoTimer;
+  function startAutoPlay() {
     clearInterval(autoTimer);
-  }));
+    autoTimer = setInterval(() => {
+      const maxIndex = Math.max(0, total - getVisible());
+      goTo(current < maxIndex ? current + 1 : 0);
+    }, 5000);
+  }
+
+  function resetAutoPlay() {
+    startAutoPlay();
+  }
+
+  startAutoPlay();
 
   window.addEventListener('resize', () => {
     visible = getVisible();
