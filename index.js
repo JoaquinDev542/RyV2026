@@ -168,6 +168,9 @@ window.addEventListener('scroll', () => {
      if (e.isIntersecting) {
        e.target.style.opacity = '1';
        e.target.style.transform = 'translateY(0)';
+     } else {
+       e.target.style.opacity = '0';
+       e.target.style.transform = 'translateY(20px)';
      }
    });
  }, { threshold: 0.1 });
