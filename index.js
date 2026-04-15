@@ -117,6 +117,11 @@ window.addEventListener('scroll', () => {
       goTo(0);
       lb.classList.add('active');
       document.body.style.overflow = 'hidden';
+
+      // Actualizar sidebar activo
+      document.querySelectorAll('.lb-cat-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.category === categoryKey);
+      });
     }
  
     function closeLightbox() {
@@ -131,6 +136,14 @@ window.addEventListener('scroll', () => {
     document.getElementById('lb-close').onclick = closeLightbox;
     document.getElementById('lb-prev').onclick  = () => goTo(current - 1);
     document.getElementById('lb-next').onclick  = () => goTo(current + 1);
+
+    // Sidebar: navegar entre categorías
+    document.querySelectorAll('.lb-cat-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        openLightbox(btn.dataset.category);
+      });
+    });
  
     lb.addEventListener('click', e => { if (e.target === lb) closeLightbox(); });
  

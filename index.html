@@ -251,14 +251,43 @@
   <!-- LIGHTBOX -->
   <div class="lb-overlay" id="lb" role="dialog" aria-modal="true">
     <button class="lb-close" id="lb-close" aria-label="Cerrar">✕</button>
-    <div class="lb-category-title" id="lb-title"></div>
-    <div class="lb-img-wrap">
-      <button class="lb-btn lb-prev" id="lb-prev" aria-label="Anterior">&#8592;</button>
-      <img id="lb-img" src="" alt="">
-      <button class="lb-btn lb-next" id="lb-next" aria-label="Siguiente">&#8594;</button>
+
+    <!-- Sidebar de categorías -->
+    <nav class="lb-sidebar" id="lb-sidebar">
+      <p class="lb-sidebar-title">Categorías</p>
+      <button class="lb-cat-btn" data-category="comunidad">
+        <span class="lb-cat-icon">👥</span>
+        <span>Comunidad</span>
+      </button>
+      <button class="lb-cat-btn" data-category="ajedrez">
+        <span class="lb-cat-icon">♟️</span>
+        <span>Ajedrez</span>
+      </button>
+      <button class="lb-cat-btn" data-category="senderismo">
+        <span class="lb-cat-icon">🥾</span>
+        <span>Senderismo</span>
+      </button>
+      <button class="lb-cat-btn" data-category="pingpong">
+        <span class="lb-cat-icon">🏓</span>
+        <span>Ping pong</span>
+      </button>
+      <button class="lb-cat-btn" data-category="equipo">
+        <span class="lb-cat-icon">🤝</span>
+        <span>Equipo</span>
+      </button>
+    </nav>
+
+    <!-- Contenido principal -->
+    <div class="lb-main">
+      <div class="lb-category-title" id="lb-title"></div>
+      <div class="lb-img-wrap">
+        <button class="lb-btn lb-prev" id="lb-prev" aria-label="Anterior">&#8592;</button>
+        <img id="lb-img" src="" alt="">
+        <button class="lb-btn lb-next" id="lb-next" aria-label="Siguiente">&#8594;</button>
+      </div>
+      <div class="lb-dots" id="lb-dots"></div>
+      <div class="lb-counter" id="lb-counter"></div>
     </div>
-    <div class="lb-dots" id="lb-dots"></div>
-    <div class="lb-counter" id="lb-counter"></div>
   </div>
 </section>
 
@@ -523,5 +552,3 @@
 <script src="index.js"></script>
 </body>
 </html>
-
-
