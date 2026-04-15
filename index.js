@@ -99,8 +99,20 @@ window.addEventListener('scroll', () => {
  
     function goTo(i) {
       current = (i + currentImages.length) % currentImages.length;
+      
+      // Remover animación para resetearla
+      lbImg.classList.remove('animate');
+      
+      // Forzar reflow para reiniciar la animación
+      void lbImg.offsetWidth;
+      
+      // Cambiar la imagen
       lbImg.src = currentImages[current].src;
       lbImg.alt = currentImages[current].alt;
+      
+      // Agregar animación nuevamente
+      lbImg.classList.add('animate');
+      
       lbCounter.textContent = (current + 1) + ' / ' + currentImages.length;
       lbDots.querySelectorAll('.lb-dot').forEach((d, j) =>
         d.classList.toggle('active', j === current)
