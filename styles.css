@@ -1475,16 +1475,20 @@ footer {
   inset: 0;
   background: rgba(0, 0, 0, 0.93);
   z-index: 9999;
-  display: none;
+  display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
   animation: fadeIn 0.2s ease;
   min-height: 100vh;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
 }
 
 .lb-overlay.active {
-  display: flex;
+  opacity: 1;
+  pointer-events: auto;
 }
 
 /* ── LIGHTBOX LAYOUT ── */
@@ -1616,12 +1620,13 @@ footer {
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: background 0.2s;
+  transition: background 0.3s ease, transform 0.3s ease;
   z-index: 10000;
 }
 
 .lb-close:hover {
   background: rgba(255, 255, 255, 0.28);
+  transform: rotate(90deg) scale(1.1);
 }
 
 .lb-img-wrap {
@@ -1643,18 +1648,21 @@ footer {
   object-fit: contain;
   display: block;
   user-select: none;
-  animation: zoomIn 0.25s ease;
 }
 
-@keyframes zoomIn {
+.lb-img-wrap img.animate {
+  animation: slideInImage 0.35s ease-out;
+}
+
+@keyframes slideInImage {
   from {
-    transform: scale(0.96);
     opacity: 0;
+    transform: scale(0.98) translateY(5px);
   }
 
   to {
-    transform: scale(1);
     opacity: 1;
+    transform: scale(1) translateY(0);
   }
 }
 
@@ -1692,6 +1700,11 @@ footer {
   display: flex;
   gap: 8px;
   margin-top: 20px;
+  position: sticky;
+  bottom: 20px;
+  justify-content: center;
+  width: 100%;
+  z-index: 100;
 }
 
 .lb-dot {
@@ -1757,6 +1770,20 @@ footer {
   .lb-next {
     right: -46px;
   }
+
+  .lb-img-wrap {
+    width: 100%;
+    max-width: 90vw;
+  }
+
+  .lb-img-wrap img {
+    max-width: 90vw;
+    max-height: 60vh;
+  }
+
+  .lb-main {
+    padding: 1.5rem 0.5rem;
+  }
 }
 
 @media (max-width: 500px) {
@@ -1791,5 +1818,19 @@ footer {
   .lb-prev,
   .lb-next {
     display: none;
+  }
+
+  .lb-img-wrap {
+    width: 100%;
+    max-width: 95vw;
+  }
+
+  .lb-img-wrap img {
+    max-width: 95vw;
+    max-height: 55vh;
+  }
+
+  .lb-main {
+    padding: 1rem 0.5rem;
   }
 }
