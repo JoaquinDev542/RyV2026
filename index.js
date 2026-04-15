@@ -123,6 +123,19 @@ window.addEventListener('scroll', () => {
         btn.classList.toggle('active', btn.dataset.category === categoryKey);
       });
     }
+
+    function initCategoryThumbnails() {
+      document.querySelectorAll('.lb-cat-btn').forEach(btn => {
+        const cat = categories[btn.dataset.category];
+        const img = btn.querySelector('.lb-cat-img');
+        if (cat && img) {
+          img.src = cat.images[0].src;
+          img.alt = cat.label;
+        }
+      });
+    }
+
+    initCategoryThumbnails();
  
     function closeLightbox() {
       lb.classList.remove('active');
