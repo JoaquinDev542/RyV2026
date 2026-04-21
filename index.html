@@ -424,42 +424,58 @@
           <li><div class="check"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div>Sin ánimo de lucro — para todos y todas</li>
         </ul>
       </div>
-      <div class="form-card">
-        <h3>Quiero unirme</h3>
-        <p>Déjanos tus datos y te escribimos personalmente para darte la bienvenida</p>
-        <div class="form-row">
-          <div class="form-group">
-            <label>Nombre</label>
-            <input type="text" placeholder="Tu nombre">
-          </div>
-          <div class="form-group">
-            <label>Apellidos</label>
-            <input type="text" placeholder="Tus apellidos">
-          </div>
-        </div>
-        <div class="form-group">
-          <label>Email</label>
-          <input type="email" placeholder="tu@email.com">
-        </div>
-        <div class="form-group">
-          <label>Teléfono</label>
-          <input type="tel" placeholder="+34 600 000 000">
-        </div>
-        <div class="form-group">
-          <label>Sede de interés</label>
-          <select>
-            <option value="">Selecciona una opción</option>
-            <option>Arganda del Rey (Madrid)</option>
-            <option>Barcelona</option>
-            <option>Ambas</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label>¿Por qué quieres unirte?</label>
-          <textarea placeholder="Cuéntanos un poco sobre ti y qué actividades te interesan..."></textarea>
-        </div>
-        <button class="btn-submit" onclick="handleSubmit(this)">Enviar solicitud →</button>
-      </div>
+     <div class="form-card">
+  <h3>Quiero unirme</h3>
+  <p>Déjanos tus datos y te escribimos personalmente para darte la bienvenida</p>
+  <div class="form-row">
+    <div class="form-group">
+      <label for="rv-nombre">Nombre</label>
+      <input type="text" id="rv-nombre" placeholder="Tu nombre" autocomplete="given-name">
+      <!-- El span de error aparece aquí dinámicamente -->
+    </div>
+    <div class="form-group">
+      <label for="rv-apellidos">Apellidos</label>
+      <input type="text" id="rv-apellidos" placeholder="Tus apellidos" autocomplete="family-name">
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="rv-email">Email</label>
+    <input type="email" id="rv-email" placeholder="tu@email.com" autocomplete="email">
+  </div>
+  <div class="form-group">
+    <label for="rv-telefono">Teléfono</label>
+    <input type="tel" id="rv-telefono" placeholder="+34 600 000 000" autocomplete="tel">
+  </div>
+  <div class="form-group">
+    <label for="rv-sede">Sede de interés</label>
+    <select id="rv-sede">
+      <option value="">Selecciona una opción</option>
+      <option>Arganda del Rey (Madrid)</option>
+      <option>Barcelona</option>
+      <option>Ambas</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <label for="rv-mensaje">¿Por qué quieres unirte?</label>
+    <textarea id="rv-mensaje" placeholder="Cuéntanos un poco sobre ti y qué actividades te interesan..."></textarea>
+  </div>
+  <button class="btn-submit" id="rv-submit" onclick="handleSubmit(this)">
+    Enviar solicitud →
+  </button>
+  <!-- Mensaje de éxito (oculto por defecto) -->
+  <div id="rv-success" style="display:none; margin-top:20px; padding:16px 20px;
+       background:#d1fae5; border:1px solid #6ee7b7; border-radius:10px;
+       color:#065f46; font-weight:600; text-align:center;" role="alert">
+    🎉 ¡Solicitud enviada! Nos ponemos en contacto contigo pronto.
+  </div>
+  <!-- Mensaje de error de red (oculto por defecto) -->
+  <div id="rv-error" style="display:none; margin-top:20px; padding:16px 20px;
+       background:#fee2e2; border:1px solid #fca5a5; border-radius:10px;
+       color:#991b1b; font-size:0.875rem;" role="alert">
+    ❌ Hubo un problema al enviar. Por favor inténtalo de nuevo o escríbenos a
+    <a href="mailto:rockyvidaespana@gmail.com" style="color:#991b1b;">rockyvidaespana@gmail.com</a>
+  </div>
+</div>
     </div>
   </div>
 </section>
