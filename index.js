@@ -187,18 +187,134 @@ window.addEventListener('scroll', () => {
       if (Math.abs(dx) > 50) goTo(current + (dx < 0 ? 1 : -1));
       touchX = null;
     }, { passive: true });
- // Formulario feedback
- function handleSubmit(btn) {
-   const original = btn.textContent;
-   btn.textContent = '¡Enviado! Nos ponemos en contacto contigo pronto ✓';
-   btn.style.background = '#059669';
-   btn.disabled = true;
-   setTimeout(() => {
-     btn.textContent = original;
-     btn.style.background = '';
-     btn.disabled = false;
-   }, 4000);
- }
+/* ════════════════════════════════════════════
+   FORMULARIO ÚNETE — Rock & Vida España
+   Con validación + envío a Google Sheets
+   ════════════════════════════════════════════ */
+
+// ⚠️ PEGA AQUÍ LA URL QUE COPIASTE EN EL PASO 3
+const RV_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyUKkJDic77k1t_aP6d9oOBodcdjqhDvw0WmjFJxxUtWp2V9Je6oNi1yJ--47VaC9OU/exec';
+
+function handleSubmit(btn) {
+
+  // ── 1. Referencias a los campos ──
+  const nombreInput    = document.getElementById('rv-nombre');
+  const apellidosInput = document.getElementById('rv-apellidos');
+  const emailInput     = document.getElementById('rv-email');
+  const telefonoInput  = document.getElementById('rv-telefono');
+  const sedeInput      = document.getElementById('rv-sede');
+  const mensajeInput   = document.getElementById('rv-mensaje');
+  const successBox     = document.getElementById('rv-success');
+  const errorBox       = document.getElementById('rv-error');
+
+  // ── 2. Limpiar errores previos ──
+  rvLimpiarErrores();
+  if (successBox) successBox.style.display = 'none';
+  if (errorBox)   errorBox.style.display   = 'none';
+
+  // ── 3. Validar ──
+  if (!rvValidar(nombreInput, apellidosInput, emailInput)) return;
+
+  // ── 4. Recoger datos ──
+  const datos = {
+    nombre    : nombreInput.value.trim(),
+    apellidos : apellidosInput.value.trim(),
+    email     : emailInput.value.trim(),
+    telefono  : telefonoInput?.value.trim()  || '',
+    sede      : sedeInput?.value             || '',
+    mensaje   : mensajeInput?.value.trim()   || ''
+  };
+
+  // ── 5. Deshabilitar botón mientras envía ──
+  btn.disabled    = true;
+  btn.textContent = 'Enviando…';
+
+  // ── 6. Enviar a Google Sheets ──
+  fetch(RV_SCRIPT_URL, {
+    method  : 'POST',
+    headers : { 'Content-Type': 'text/plain' },
+    body    : JSON.stringify(datos),
+    mode    : 'no-cors'
+  })
+  .then(() => {
+    // Éxito: ocultar formulario y mostrar mensaje
+    rvMostrarExito(btn);
+  })
+  .catch(() => {
+    // Error de red
+    if (errorBox) errorBox.style.display = 'block';
+    btn.disabled    = false;
+    btn.textContent = 'Enviar solicitud →';
+  });
+}
+
+/* ── Validación ── */
+function rvValidar(nombreInput, apellidosInput, emailInput) {
+  let ok = true;
+
+  if (!nombreInput.value.trim()) {
+    rvMostrarError(nombreInput, 'El nombre es obligatorio.');
+    ok = false;
+  }
+
+  if (!apellidosInput.value.trim()) {
+    rvMostrarError(apellidosInput, 'Los apellidos son obligatorios.');
+    ok = false;
+  }
+
+  const emailVal   = emailInput.value.trim();
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailVal) {
+    rvMostrarError(emailInput, 'El email es obligatorio.');
+    ok = false;
+  } else if (!emailRegex.test(emailVal)) {
+    rvMostrarError(emailInput, 'Introduce un email válido (ej: nombre@dominio.com).');
+    ok = false;
+  }
+
+  return ok;
+}
+
+/* ── Mostrar error bajo un campo ── */
+function rvMostrarError(input, mensaje) {
+  input.style.borderColor = '#e05252';
+  const p       = document.createElement('p');
+  p.className   = 'rv-error-msg';
+  p.textContent = mensaje;
+  p.setAttribute('role', 'alert');
+  p.style.cssText = 'color:#e05252;font-size:0.78rem;margin:4px 0 0;';
+  input.parentNode.appendChild(p);
+}
+
+/* ── Limpiar todos los errores ── */
+function rvLimpiarErrores() {
+  document.querySelectorAll('.rv-error-msg').forEach(el => el.remove());
+  document.querySelectorAll('#rv-nombre, #rv-apellidos, #rv-email')
+    .forEach(el => el.style.borderColor = '');
+}
+
+/* ── Mostrar éxito y resetear ── */
+function rvMostrarExito(btn) {
+  // Vaciar campos
+  ['rv-nombre','rv-apellidos','rv-email','rv-telefono','rv-sede','rv-mensaje']
+    .forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.value = '';
+    });
+
+  // Restaurar botón
+  btn.disabled    = false;
+  btn.textContent = 'Enviar solicitud →';
+
+  // Mostrar mensaje de éxito
+  const successBox = document.getElementById('rv-success');
+  if (successBox) successBox.style.display = 'block';
+
+  // Ocultar el mensaje de éxito tras 6 segundos
+  setTimeout(() => {
+    if (successBox) successBox.style.display = 'none';
+  }, 6000);
+}
 
  // Animación de entrada suave al hacer scroll
  const observer = new IntersectionObserver((entries) => {
