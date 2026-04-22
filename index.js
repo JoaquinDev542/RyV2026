@@ -43,7 +43,7 @@ const categories = {
       { src: "galeria/senderismo/senderismofrontal.webp", alt: "Senderismo 1" },
       { src: "galeria/senderismo/senderismo1.webp", alt: "Senderismo 2" },
       { src: "galeria/senderismo/senderismo2.heic", alt: "Senderismo 3" },
-      { src: "galeria/senderismo/senderismo3.heic", alt: "Senderismo 4" },
+      { src: "galeria/senderismo/senderismo3.jpg", alt: "Senderismo 4" },
     ]
   },
   pingpong: {
