@@ -23,7 +23,7 @@ const categories = {
     label: "Comunidad",
     images: [
       { src: "galeria/comunidad/comunidad2.heic", alt: "Comunidad 1" },
-      { src: "galeria/comunidad/comunidad3.heic",   alt: "Comunidad 2" },
+      { src: "galeria/comunidad/comunidad3.jpg",   alt: "Comunidad 2" },
       { src: "galeria/comunidad/comunidad1.heic", alt: "Comunidad 3" },
       { src: "galeria/comunidad/comunidad4.heic", alt: "Comunidad 4" },
     ]
