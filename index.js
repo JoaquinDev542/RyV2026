@@ -22,46 +22,46 @@ const categories = {
   comunidad: {
     label: "Comunidad",
     images: [
-      { src: "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=1200&auto=format&fit=crop", alt: "Comunidad 1" },
-      { src: "https://images.unsplash.com/photo-1543269865-cbf427effbad?w=1200&auto=format&fit=crop",   alt: "Comunidad 2" },
-      { src: "https://images.unsplash.com/photo-1511632765486-a01980e01a18?w=1200&auto=format&fit=crop", alt: "Comunidad 3" },
-      { src: "https://images.unsplash.com/photo-1528605248644-14dd04022da1?w=1200&auto=format&fit=crop", alt: "Comunidad 4" },
+      { src: "galeria/comunidad/comunidad2.heic", alt: "Comunidad 1" },
+      { src: "galeria/comunidad/comunidad3.heic",   alt: "Comunidad 2" },
+      { src: "galeria/comunidad/comunidad1.heic", alt: "Comunidad 3" },
+      { src: "galeria/comunidad/comunidad4.heic", alt: "Comunidad 4" },
     ]
   },
   ajedrez: {
     label: "Ajedrez",
     images: [
-      { src: "https://images.unsplash.com/photo-1529699211952-734e80c4d42b?w=1200&auto=format&fit=crop", alt: "Ajedrez 1" },
-      { src: "https://images.unsplash.com/photo-1604948501466-4e9c339b9c24?w=1200&auto=format&fit=crop", alt: "Ajedrez 2" },
-      { src: "https://images.unsplash.com/photo-1586165368502-1bad197a6461?w=1200&auto=format&fit=crop", alt: "Ajedrez 3" },
-      { src: "https://images.unsplash.com/photo-1560174038-da43ac74f01b?w=1200&auto=format&fit=crop",   alt: "Ajedrez 4" },
+      { src: "galeria/ajedrez/ajedrez1.jpg", alt: "Ajedrez 1" },
+      { src: "galeria/ajedrez/ajedrez2.jpg", alt: "Ajedrez 2" },
+      { src: "galeria/ajedrez/ajedrez3.jpg", alt: "Ajedrez 3" },
+      { src: "galeria/ajedrez/ajedrez4.webp",   alt: "Ajedrez 4" },
     ]
   },
   senderismo: {
     label: "Senderismo",
     images: [
-      { src: "https://images.unsplash.com/photo-1551632811-561732d1e306?w=1200&auto=format&fit=crop", alt: "Senderismo 1" },
-      { src: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=1200&auto=format&fit=crop", alt: "Senderismo 2" },
-      { src: "https://images.unsplash.com/photo-1486870591958-9b9d0d1dda99?w=1200&auto=format&fit=crop", alt: "Senderismo 3" },
-      { src: "https://images.unsplash.com/photo-1510227272981-87123e259b17?w=1200&auto=format&fit=crop", alt: "Senderismo 4" },
+      { src: "galeria/senderismo/senderismofrontal.webp", alt: "Senderismo 1" },
+      { src: "galeria/senderismo/senderismo1.webp", alt: "Senderismo 2" },
+      { src: "galeria/senderismo/senderismo2.heic", alt: "Senderismo 3" },
+      { src: "galeria/senderismo/senderismo3.heic", alt: "Senderismo 4" },
     ]
   },
   pingpong: {
     label: "Ping pong",
     images: [
-      { src: "https://images.unsplash.com/photo-1609710228159-0fa9bd7c0827?w=1200&auto=format&fit=crop", alt: "Ping pong 1" },
-      { src: "https://images.unsplash.com/photo-1534158914592-062992fbe900?w=1200&auto=format&fit=crop", alt: "Ping pong 2" },
-      { src: "https://images.unsplash.com/photo-1611251135345-18c56206b863?w=1200&auto=format&fit=crop", alt: "Ping pong 3" },
-      { src: "https://images.unsplash.com/photo-1540539234-c14a20fb7c7b?w=1200&auto=format&fit=crop",   alt: "Ping pong 4" },
+      { src: "galeria/pingpong/pingpongfrontal.jpg", alt: "Ping pong 1" },
+      { src: "galeria/pingpong/pingpong1.jpg", alt: "Ping pong 2" },
+      { src: "galeria/pingpong/pingpong1.webp", alt: "Ping pong 3" },
+      { src: "galeria/pingpong/pingpong3.jpg",   alt: "Ping pong 4" },
     ]
   },
   equipo: {
     label: "Equipo",
     images: [
-      { src: "https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?w=1200&auto=format&fit=crop", alt: "Equipo 1" },
-      { src: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1200&auto=format&fit=crop", alt: "Equipo 2" },
-      { src: "https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?w=1200&auto=format&fit=crop", alt: "Equipo 3" },
-      { src: "https://images.unsplash.com/photo-1556761175-b413da4baf72?w=1200&auto=format&fit=crop",   alt: "Equipo 4" },
+      { src: "galeria/equipo/equipofrontal.heic", alt: "Equipo 1" },
+      { src: "galeria/equipo/equipo1.jpg", alt: "Equipo 2" },
+      { src: "galeria/equipo/equipofrontal.jpg", alt: "Equipo 3" },
+      { src: "galeria/equipo/equipofrontal.png",   alt: "Equipo 4" },
     ]
   }
 };
