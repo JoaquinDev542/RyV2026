@@ -734,22 +734,15 @@ nav a:hover svg { transform: scale(1.05); }
   padding-top: 1.25rem;
   border-top: 1px solid var(--gris-medio);
 }
- 
-.test-avatar {
-  width: 44px; height: 44px;
-  border-radius: 50%;
-  display: flex; align-items: center; justify-content: center;
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 1.1rem; color: #fff;
-  flex-shrink: 0;
-}
 
 .test-avatar {
   width: 44px;
   height: 44px;
-  border-radius: 50%;
+  border-radius: 100%;
   overflow: hidden;
   flex-shrink: 0;
+ display: flex; align-items: center; justify-content: center;
+  font-family: 'Bebas Neue', sans-serif;
 }
 
 .test-avatar img {
