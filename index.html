@@ -460,6 +460,49 @@
   </div>
 </section>
 
+<!-- ========== CALENDARIO DE ACTIVIDADES ========== -->
+<section class="section calendario" id="calendario">
+  <div class="container">
+    <span class="tag">Agenda</span>
+    <h2 class="section-title">Calendario de actividades</h2>
+    <p class="cal-intro">Consulta las actividades del mes. Haz clic en un día para ver los detalles.</p>
+
+    <div class="cal-layout">
+
+      <!-- Panel izquierdo: calendario -->
+      <div class="cal-panel">
+        <div class="cal-header">
+          <button class="cal-nav-btn" id="cal-prev" aria-label="Mes anterior">&#8592;</button>
+          <h3 class="cal-month-title" id="cal-month-label"></h3>
+          <button class="cal-nav-btn" id="cal-next" aria-label="Mes siguiente">&#8594;</button>
+        </div>
+        <div class="cal-weekdays">
+          <span>Lun</span><span>Mar</span><span>Mié</span>
+          <span>Jue</span><span>Vie</span><span>Sáb</span><span>Dom</span>
+        </div>
+        <div class="cal-grid" id="cal-grid"></div>
+      </div>
+
+      <!-- Panel derecho: detalle del día (solo lectura) -->
+      <div class="cal-detail" id="cal-detail">
+
+        <div class="cal-empty-state" id="cal-empty-state">
+          <div class="cal-empty-icon">📅</div>
+          <p>Selecciona un día en el calendario para ver las actividades.</p>
+        </div>
+
+        <div class="cal-day-view" id="cal-day-view" style="display:none;">
+          <div class="cal-day-header">
+            <h4 id="cal-day-title"></h4>
+          </div>
+          <div id="cal-events-list"></div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ========== CONTACTO ========== -->
 <section class="section contacto" id="contacto">
   <div class="container">
@@ -571,5 +614,6 @@
 </a>
 
 <script src="index.js"></script>
+<script src="calendario.js"></script>
 </body>
 </html>
