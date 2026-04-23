@@ -881,6 +881,8 @@ nav a:hover svg { transform: scale(1.05); }
 }
  
 .btn-submit:hover { background: var(--rojo-dark); transform: translateY(-1px); }
+
+
  
 /* ===== CONTACTO ===== */
 .contacto { background: var(--blanco); }
@@ -1035,3 +1037,254 @@ footer { background: var(--negro); padding: 3rem 2rem 2rem; text-align: center; 
   .lb-img-wrap img { max-width: 95vw; max-height: 55vh; }
   .lb-main { padding: 1rem 0.5rem; }
 }
+
+
+/* ===== CALENDARIO DE ACTIVIDADES ===== */
+
+.calendario { background: var(--gris-claro); }
+
+.cal-intro {
+  color: var(--gris-texto);
+  font-size: 1rem;
+  margin-bottom: 2.5rem;
+  line-height: 1.8;
+}
+
+/* Layout: dos columnas */
+.cal-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2.5rem;
+  align-items: start;
+}
+
+/* ── Panel del calendario ── */
+.cal-panel {
+  background: #fff;
+  border-radius: 14px;
+  padding: 1.75rem;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.06);
+}
+
+.cal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.25rem;
+}
+
+.cal-month-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.5rem;
+  color: var(--negro);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.cal-nav-btn {
+  background: none;
+  border: 1.5px solid var(--gris-medio);
+  color: var(--negro);
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  font-size: 1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background .2s, border-color .2s, color .2s;
+}
+
+.cal-nav-btn:hover {
+  background: var(--rojo);
+  border-color: var(--rojo);
+  color: #fff;
+}
+
+.cal-weekdays {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  text-align: center;
+  margin-bottom: 0.6rem;
+}
+
+.cal-weekdays span {
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gris-texto);
+  padding: 0.3rem 0;
+}
+
+.cal-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 4px;
+}
+
+/* Celda de día */
+.cal-day {
+  aspect-ratio: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  font-size: 0.88rem;
+  font-weight: 700;
+  cursor: pointer;
+  position: relative;
+  border: 1.5px solid transparent;
+  transition: background .15s, border-color .15s, color .15s;
+  color: var(--negro);
+  background: transparent;
+  gap: 3px;
+}
+
+.cal-day:hover {
+  background: var(--gris-claro);
+  border-color: var(--gris-medio);
+}
+
+/* Día vacío (relleno para alinear la cuadrícula) */
+.cal-day.empty {
+  cursor: default;
+  pointer-events: none;
+}
+
+/* Día de hoy */
+.cal-day.today {
+  background: rgba(204,26,26,0.08);
+  border-color: var(--rojo);
+  color: var(--rojo);
+}
+
+/* Día seleccionado */
+.cal-day.selected {
+  background: var(--rojo);
+  border-color: var(--rojo);
+  color: #fff;
+}
+
+.cal-day.selected .cal-dot { background: #fff; }
+
+/* Día con actividades: punto indicador */
+.cal-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--rojo);
+  display: block;
+  flex-shrink: 0;
+}
+
+/* ── Panel de detalle ── */
+.cal-detail {
+  background: #fff;
+  border-radius: 14px;
+  padding: 1.75rem;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.06);
+  min-height: 360px;
+  display: flex;
+  flex-direction: column;
+}
+
+.cal-empty-state {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 0.75rem;
+  color: var(--gris-texto);
+  font-size: 0.92rem;
+  line-height: 1.7;
+}
+
+.cal-empty-icon { font-size: 2.5rem; }
+
+.cal-day-view { flex: 1; display: flex; flex-direction: column; gap: 1.25rem; }
+
+.cal-day-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.cal-day-header h4 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.4rem;
+  color: var(--negro);
+  letter-spacing: 0.03em;
+}
+
+
+/* Heredamos estilos de .form-group del proyecto */
+.form-group textarea { height: 70px; }
+
+
+
+/* Lista de eventos */
+#cal-events-list { display: flex; flex-direction: column; gap: 0.75rem; }
+
+.cal-event-item {
+  background: var(--gris-claro);
+  border-radius: 10px;
+  padding: 1rem 1.1rem;
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+  position: relative;
+  border-left: 4px solid var(--rojo);
+}
+
+.cal-event-time {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.15rem;
+  color: var(--rojo);
+  white-space: nowrap;
+  min-width: 44px;
+  line-height: 1.2;
+}
+
+.cal-event-info { flex: 1; min-width: 0; }
+
+.cal-event-desc {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--negro);
+  margin-bottom: 0.2rem;
+  line-height: 1.4;
+}
+
+.cal-event-place {
+  font-size: 0.8rem;
+  color: var(--gris-texto);
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.cal-no-events {
+  text-align: center;
+  color: var(--gris-texto);
+  font-size: 0.88rem;
+  padding: 1.5rem 0;
+  font-style: italic;
+}
+
+/* ── Responsive ── */
+@media (max-width: 900px) {
+  .cal-layout { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 500px) {
+  .cal-day { font-size: 0.78rem; }
+}
+
+
