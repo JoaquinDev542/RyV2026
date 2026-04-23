@@ -2,132 +2,146 @@
  * calendario.js — Módulo de Calendario (solo lectura)
  * Rock & Vida España
  *
- * Las actividades se definen manualmente en ACTIVIDADES_DATA.
- * Los usuarios solo pueden consultar, nunca editar.
+ * Novedades:
+ *  - Propiedad "ciudad" en cada evento ("arganda" | "barcelona")
+ *  - Filtro dinámico por ciudad
+ *  - Lugar convertido en enlace a Google Maps
  */
 
 (function () {
   'use strict';
 
   // ─────────────────────────────────────────────────────────────
-  // DATOS DE ACTIVIDADES
-  // Edita este objeto para gestionar el calendario.
-  //
-  // Formato de clave: "YYYY-MM-DD"
-  // Cada día contiene un array de objetos con:
-  //   hora  → string "HH:MM"
-  //   lugar → string con el lugar
-  //   desc  → string con la descripción
+  // MAPA DE GOOGLE MAPS POR CIUDAD
+  // Si añades una ciudad nueva, pon aquí su URL de Maps.
   // ─────────────────────────────────────────────────────────────
- // ─────────────────────────────────────────────────────────────
-// BLOQUE 1 — DÍAS SUELTOS
-//
-// Añade aquí actividades puntuales que no se repiten.
-//
-// CÓMO AÑADIR UN DÍA SUELTO:
-//   1. Escribe la fecha como clave: "YYYY-MM-DD"
-//   2. Dentro, añade un objeto por actividad con hora, lugar y desc
-//   3. Si hay varias actividades el mismo día, añade más objetos al array
-//
-// EJEMPLO (descomenta y edita):
-// "2026-06-21": [
-//   { hora: "11:00", lugar: "Parque del Retiro, Madrid", desc: "Picnic de verano" }
-// ],
-// "2026-12-28": [
-//   { hora: "18:00", lugar: "Sede Arganda del Rey", desc: "Cena de Navidad" },
-//   { hora: "21:00", lugar: "Sede Arganda del Rey", desc: "Brindis de fin de año" }
-// ],
+  const MAPS_URLS = {
+    arganda:   'https://maps.google.com/?q=Leonor+de+Cortinas+25,+Arganda+del+Rey,+Madrid',
+    barcelona: 'https://maps.google.com/?q=Barcelona,+Cataluña',
+  };
+
+  // ─────────────────────────────────────────────────────────────
+// TELÉFONOS DE CONTACTO POR CIUDAD
+// Para cambiar un número, edita solo este objeto.
 // ─────────────────────────────────────────────────────────────
-const DIAS_SUELTOS = {
-
-  // → Escribe aquí tus días sueltos:
-
-
+const CONTACTOS = {
+  arganda:   '600 000 000',   // ← pon aquí el teléfono de Arganda
+  barcelona: '611 111 111',   // ← pon aquí el teléfono de Barcelona
 };
 
+  // ─────────────────────────────────────────────────────────────
+  // BLOQUE 1 — DÍAS SUELTOS
+  //
+  // CÓMO AÑADIR UN DÍA SUELTO:
+  //   1. Clave: "YYYY-MM-DD"
+  //   2. Campos: hora, lugar, desc, ciudad ("arganda" | "barcelona")
+  //
+  // EJEMPLO:
+  // "2026-07-04": [
+  //   { hora: "20:00", lugar: "Sede Arganda del Rey", desc: "Torneo especial", ciudad: "arganda" }
+  // ],
+  // ─────────────────────────────────────────────────────────────
+  const DIAS_SUELTOS = {
 
-// ─────────────────────────────────────────────────────────────
-// BLOQUE 2 — EVENTOS RECURRENTES
-//
-// Añade aquí actividades que se repiten cada semana.
-//
-// CÓMO AÑADIR UNA RECURRENCIA:
-//   1. Copia uno de los bloques de ejemplo de abajo
-//   2. Cambia diaSemana: (0=Dom, 1=Lun, 2=Mar, 3=Mié, 4=Jue, 5=Vie, 6=Sáb)
-//   3. Rellena hora, lugar y desc
-//
-// CÓMO ELIMINAR UNA RECURRENCIA:
-//   Borra el bloque completo { ... } o comenta la línea con //
-// ─────────────────────────────────────────────────────────────
-const REGLAS_RECURRENTES = [
+    // → Escribe aquí tus días sueltos:
 
-  // → Jueves
-  {
-    diaSemana: 4,
-    hora:      "19:00 – 21:00",
-    lugar:     "Sede Arganda del Rey",
-    desc:      "Quedada de ajedrez",
-  },
+  };
 
-  // → Viernes
-  {
-    diaSemana: 5,
-    hora:      "19:00 – 21:00",
-    lugar:     "Sede Arganda del Rey",
-    desc:      "Quedada de ping pong y juegos de mesa",
-  },
 
-  // → Plantilla para nueva recurrencia (descomenta y rellena):
+  // ─────────────────────────────────────────────────────────────
+  // BLOQUE 2 — EVENTOS RECURRENTES
+  //
+  // CÓMO AÑADIR UNA RECURRENCIA:
+  //   diaSemana: 0=Dom 1=Lun 2=Mar 3=Mié 4=Jue 5=Vie 6=Sáb
+  //   ciudad:    "arganda" | "barcelona"
+  //
+  // PLANTILLA:
   // {
-  //   diaSemana: 0,          // 0=Dom 1=Lun 2=Mar 3=Mié 4=Jue 5=Vie 6=Sáb
+  //   diaSemana: 0,
   //   hora:      "HH:MM",
   //   lugar:     "",
   //   desc:      "",
+  //   ciudad:    "arganda",
   // },
+  // ─────────────────────────────────────────────────────────────
+  const REGLAS_RECURRENTES = [
 
-];
+    // → Jueves — Ajedrez
+    {
+      diaSemana: 4,
+      hora:      "19:00 – 21:00",
+      lugar:     "Sede Arganda del Rey",
+      desc:      "Quedada de ajedrez",
+      ciudad:    "arganda",
+    },
+
+    // → Viernes — Ping pong
+    {
+      diaSemana: 5,
+      hora:      "19:00 – 21:00",
+      lugar:     "Sede Arganda del Rey",
+      desc:      "Quedada de ping pong y juegos de mesa",
+      ciudad:    "arganda",
+    },
+
+    // → Sabado — Ping pong  y Ajedrez en Barcelona
+    {
+      diaSemana: 6,
+      hora:      "18:00 – 20:00",
+      lugar:     "Sede Barcelona",
+      desc:      "Quedada de ping pong y ajedrez",
+      ciudad:    "barcelona",
+    }
+
+  ];
 
 
-// ─────────────────────────────────────────────────────────────
-// MOTOR — No tocar a partir de aquí
-// Combina los días sueltos con los recurrentes en un solo objeto.
-// ─────────────────────────────────────────────────────────────
-function generarActividades() {
-  // Copia los días sueltos como base del resultado
-  const datos = {};
-  Object.entries(DIAS_SUELTOS).forEach(([key, eventos]) => {
-    datos[key] = [...eventos];
-  });
+  // ─────────────────────────────────────────────────────────────
+  // MOTOR — No tocar a partir de aquí
+  // ─────────────────────────────────────────────────────────────
+  function generarActividades() {
+    const datos = {};
 
-  // Genera los recurrentes y los fusiona con los días sueltos
-  const hoy      = new Date();
-  hoy.setHours(0, 0, 0, 0);
-  const finDeAño = new Date(hoy.getFullYear(), 11, 31);
-  const cursor   = new Date(hoy);
-
-  while (cursor <= finDeAño) {
-    const diaSemana = cursor.getDay();
-
-    REGLAS_RECURRENTES.forEach(regla => {
-      if (regla.diaSemana !== diaSemana) return;
-
-      const key = [
-        cursor.getFullYear(),
-        String(cursor.getMonth() + 1).padStart(2, '0'),
-        String(cursor.getDate()).padStart(2, '0'),
-      ].join('-');
-
-      if (!datos[key]) datos[key] = [];
-      datos[key].push({ hora: regla.hora, lugar: regla.lugar, desc: regla.desc });
+    // Copiar días sueltos
+    Object.entries(DIAS_SUELTOS).forEach(([key, eventos]) => {
+      datos[key] = [...eventos];
     });
 
-    cursor.setDate(cursor.getDate() + 1);
+    // Generar recurrentes
+    const hoy      = new Date();
+    hoy.setHours(0, 0, 0, 0);
+    const finDeAño = new Date(hoy.getFullYear(), 11, 31);
+    const cursor   = new Date(hoy);
+
+    while (cursor <= finDeAño) {
+      const diaSemana = cursor.getDay();
+
+      REGLAS_RECURRENTES.forEach(regla => {
+        if (regla.diaSemana !== diaSemana) return;
+
+        const key = [
+          cursor.getFullYear(),
+          String(cursor.getMonth() + 1).padStart(2, '0'),
+          String(cursor.getDate()).padStart(2, '0'),
+        ].join('-');
+
+        if (!datos[key]) datos[key] = [];
+        datos[key].push({
+          hora:   regla.hora,
+          lugar:  regla.lugar,
+          desc:   regla.desc,
+          ciudad: regla.ciudad,
+        });
+      });
+
+      cursor.setDate(cursor.getDate() + 1);
+    }
+
+    return datos;
   }
 
-  return datos;
-}
+  const ACTIVIDADES_DATA = generarActividades();
 
-const ACTIVIDADES_DATA = generarActividades();
 
   // ─────────────────────────────────────────────────────────────
   // NOMBRES DE MESES
@@ -137,58 +151,70 @@ const ACTIVIDADES_DATA = generarActividades();
     'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'
   ];
 
+
   // ─────────────────────────────────────────────────────────────
   // ESTADO INTERNO
   // ─────────────────────────────────────────────────────────────
   const estado = {
-    año: new Date().getFullYear(),
-    mes: new Date().getMonth(),  // 0–11
-    diaSeleccionado: null,       // "YYYY-MM-DD" o null
+    año:             new Date().getFullYear(),
+    mes:             new Date().getMonth(),
+    diaSeleccionado: null,
+    filtro:          'todas',   // ← nuevo: ciudad activa
   };
+
 
   // ─────────────────────────────────────────────────────────────
   // REFERENCIAS AL DOM
   // ─────────────────────────────────────────────────────────────
   const els = {
-    grid:       document.getElementById('cal-grid'),
-    monthLabel: document.getElementById('cal-month-label'),
-    prevBtn:    document.getElementById('cal-prev'),
-    nextBtn:    document.getElementById('cal-next'),
-    emptyState: document.getElementById('cal-empty-state'),
-    dayView:    document.getElementById('cal-day-view'),
-    dayTitle:   document.getElementById('cal-day-title'),
-    eventsList: document.getElementById('cal-events-list'),
+    grid:        document.getElementById('cal-grid'),
+    monthLabel:  document.getElementById('cal-month-label'),
+    prevBtn:     document.getElementById('cal-prev'),
+    nextBtn:     document.getElementById('cal-next'),
+    emptyState:  document.getElementById('cal-empty-state'),
+    dayView:     document.getElementById('cal-day-view'),
+    dayTitle:    document.getElementById('cal-day-title'),
+    eventsList:  document.getElementById('cal-events-list'),
+    filtroBtns:  document.querySelectorAll('.cal-filtro-btn'),
   };
 
+
   // ─────────────────────────────────────────────────────────────
-  // ACCESO A LOS DATOS
+  // ACCESO Y FILTRADO DE DATOS
   // ─────────────────────────────────────────────────────────────
 
-  /** Devuelve las actividades de una fecha concreta (array, puede estar vacío) */
+  /**
+   * Devuelve los eventos de un día filtrados por ciudad activa.
+   * Si el filtro es "todas", devuelve todos.
+   */
   function getActividadesDia(fechaKey) {
-    return ACTIVIDADES_DATA[fechaKey] || [];
+    const todos = ACTIVIDADES_DATA[fechaKey] || [];
+    if (estado.filtro === 'todas') return todos;
+    return todos.filter(a => a.ciudad === estado.filtro);
   }
 
-  /** Devuelve un Set con las claves "YYYY-MM-DD" que tienen actividades en un mes dado */
+  /**
+   * Devuelve un Set de claves "YYYY-MM-DD" con eventos visibles
+   * en el mes dado, respetando el filtro activo.
+   */
   function diasConActividades(año, mes) {
     const prefijo = `${año}-${String(mes + 1).padStart(2, '0')}`;
+    const claves  = Object.keys(ACTIVIDADES_DATA).filter(k => k.startsWith(prefijo));
+
     return new Set(
-      Object.keys(ACTIVIDADES_DATA).filter(k =>
-        k.startsWith(prefijo) && ACTIVIDADES_DATA[k].length > 0
-      )
+      claves.filter(k => getActividadesDia(k).length > 0)
     );
   }
+
 
   // ─────────────────────────────────────────────────────────────
   // UTILIDADES DE FECHA
   // ─────────────────────────────────────────────────────────────
 
-  /** Formatea una fecha como "YYYY-MM-DD" */
   function toKey(año, mes, dia) {
     return `${año}-${String(mes + 1).padStart(2, '0')}-${String(dia).padStart(2, '0')}`;
   }
 
-  /** Formatea una fecha para mostrarla al usuario */
   function formatFechaLarga(fechaKey) {
     const [a, m, d] = fechaKey.split('-').map(Number);
     const fecha = new Date(a, m - 1, d);
@@ -196,6 +222,7 @@ const ACTIVIDADES_DATA = generarActividades();
       weekday: 'long', day: 'numeric', month: 'long', year: 'numeric'
     });
   }
+
 
   // ─────────────────────────────────────────────────────────────
   // RENDERIZADO DEL CALENDARIO
@@ -205,27 +232,23 @@ const ACTIVIDADES_DATA = generarActividades();
     const { año, mes } = estado;
     els.monthLabel.textContent = `${MESES[mes]} ${año}`;
 
-    // Offset para empezar la semana en lunes
-    const primerDia = new Date(año, mes, 1).getDay();
-    const offsetLunes = primerDia === 0 ? 6 : primerDia - 1;
-
-    const totalDias = new Date(año, mes + 1, 0).getDate();
-    const hoy = new Date();
-    const hoyKey = toKey(hoy.getFullYear(), hoy.getMonth(), hoy.getDate());
-    const conActividades = diasConActividades(año, mes);
+    const primerDia    = new Date(año, mes, 1).getDay();
+    const offsetLunes  = primerDia === 0 ? 6 : primerDia - 1;
+    const totalDias    = new Date(año, mes + 1, 0).getDate();
+    const hoy          = new Date();
+    const hoyKey       = toKey(hoy.getFullYear(), hoy.getMonth(), hoy.getDate());
+    const conEventos   = diasConActividades(año, mes);
 
     els.grid.innerHTML = '';
 
-    // Celdas vacías de relleno al inicio
     for (let i = 0; i < offsetLunes; i++) {
       const vacio = document.createElement('div');
       vacio.className = 'cal-day empty';
       els.grid.appendChild(vacio);
     }
 
-    // Celdas de días
     for (let dia = 1; dia <= totalDias; dia++) {
-      const key = toKey(año, mes, dia);
+      const key   = toKey(año, mes, dia);
       const celda = document.createElement('button');
       celda.className = 'cal-day';
       celda.setAttribute('aria-label', `Ver actividades del día ${dia}`);
@@ -234,21 +257,21 @@ const ACTIVIDADES_DATA = generarActividades();
       numSpan.textContent = dia;
       celda.appendChild(numSpan);
 
-      // Indicador visual si hay actividades
-      if (conActividades.has(key)) {
+      if (conEventos.has(key)) {
         const dot = document.createElement('span');
         dot.className = 'cal-dot';
         dot.setAttribute('aria-hidden', 'true');
         celda.appendChild(dot);
       }
 
-      if (key === hoyKey) celda.classList.add('today');
+      if (key === hoyKey)               celda.classList.add('today');
       if (key === estado.diaSeleccionado) celda.classList.add('selected');
 
       celda.addEventListener('click', () => seleccionarDia(key));
       els.grid.appendChild(celda);
     }
   }
+
 
   // ─────────────────────────────────────────────────────────────
   // SELECCIÓN DE DÍA
@@ -259,7 +282,7 @@ const ACTIVIDADES_DATA = generarActividades();
     renderCalendario();
 
     els.emptyState.style.display = 'none';
-    els.dayView.style.display = 'flex';
+    els.dayView.style.display    = 'flex';
 
     const titulo = formatFechaLarga(fechaKey);
     els.dayTitle.textContent = titulo.charAt(0).toUpperCase() + titulo.slice(1);
@@ -267,38 +290,59 @@ const ACTIVIDADES_DATA = generarActividades();
     renderEventos(fechaKey);
   }
 
+
   // ─────────────────────────────────────────────────────────────
-  // RENDERIZADO DE EVENTOS (solo lectura)
+  // RENDERIZADO DE EVENTOS
+  // El lugar se convierte en enlace a Google Maps si la ciudad
+  // tiene una URL definida en MAPS_URLS.
   // ─────────────────────────────────────────────────────────────
 
-  function renderEventos(fechaKey) {
-    const actividades = getActividadesDia(fechaKey);
-    els.eventsList.innerHTML = '';
+ function renderEventos(fechaKey) {
+  const actividades = getActividadesDia(fechaKey);
+  els.eventsList.innerHTML = '';
 
-    if (actividades.length === 0) {
-      const vacio = document.createElement('p');
-      vacio.className = 'cal-no-events';
-      vacio.textContent = 'No hay actividades programadas para este día.';
-      els.eventsList.appendChild(vacio);
-      return;
-    }
-
-    // Ordenar por hora antes de mostrar
-    const ordenadas = [...actividades].sort((a, b) => a.hora.localeCompare(b.hora));
-
-    ordenadas.forEach(act => {
-      const item = document.createElement('div');
-      item.className = 'cal-event-item';
-      item.innerHTML = `
-        <div class="cal-event-time">${escapeHtml(act.hora)}</div>
-        <div class="cal-event-info">
-          <div class="cal-event-desc">${escapeHtml(act.desc)}</div>
-          <div class="cal-event-place">📍 ${escapeHtml(act.lugar)}</div>
-        </div>
-      `;
-      els.eventsList.appendChild(item);
-    });
+  if (actividades.length === 0) {
+    const vacio = document.createElement('p');
+    vacio.className   = 'cal-no-events';
+    vacio.textContent = estado.filtro === 'todas'
+      ? 'No hay actividades programadas para este día.'
+      : `No hay actividades en ${estado.filtro === 'arganda' ? 'Arganda del Rey' : 'Barcelona'} este día.`;
+    els.eventsList.appendChild(vacio);
+    return;
   }
+
+  const ordenadas = [...actividades].sort((a, b) => a.hora.localeCompare(b.hora));
+
+  ordenadas.forEach(act => {
+    // Lugar: enlace a Maps si existe URL para esa ciudad
+    const mapsUrl   = MAPS_URLS[act.ciudad];
+    const lugarHtml = mapsUrl
+      ? `<a href="${mapsUrl}" target="_blank" rel="noopener" title="Ver en Google Maps">${escapeHtml(act.lugar)}</a>`
+      : escapeHtml(act.lugar);
+
+    // Teléfono: número de la ciudad del evento, o vacío si no está definido
+    const telefono  = CONTACTOS[act.ciudad] || null;
+    const telHtml   = telefono
+      ? `<div class="cal-event-phone">
+           <a href="tel:${telefono.replace(/\s/g, '')}" title="Llamar">
+             📞 ${escapeHtml(telefono)}
+           </a>
+         </div>`
+      : '';
+
+    const item = document.createElement('div');
+    item.className = 'cal-event-item';
+    item.innerHTML = `
+      <div class="cal-event-time">${escapeHtml(act.hora)}</div>
+      <div class="cal-event-info">
+        <div class="cal-event-desc">${escapeHtml(act.desc)}</div>
+        <div class="cal-event-place">📍 ${lugarHtml}</div>
+        ${telHtml}
+      </div>
+    `;
+    els.eventsList.appendChild(item);
+  });
+}
 
   // ─────────────────────────────────────────────────────────────
   // UTILIDADES
@@ -313,17 +357,20 @@ const ACTIVIDADES_DATA = generarActividades();
       .replace(/'/g, '&#39;');
   }
 
+
   // ─────────────────────────────────────────────────────────────
-  // EVENTOS DE NAVEGACIÓN
+  // EVENTOS DE NAVEGACIÓN Y FILTRO
   // ─────────────────────────────────────────────────────────────
 
   function initEventos() {
+
+    // Navegación de meses
     els.prevBtn.addEventListener('click', () => {
       estado.mes--;
       if (estado.mes < 0) { estado.mes = 11; estado.año--; }
       estado.diaSeleccionado = null;
       els.emptyState.style.display = '';
-      els.dayView.style.display = 'none';
+      els.dayView.style.display    = 'none';
       renderCalendario();
     });
 
@@ -332,10 +379,30 @@ const ACTIVIDADES_DATA = generarActividades();
       if (estado.mes > 11) { estado.mes = 0; estado.año++; }
       estado.diaSeleccionado = null;
       els.emptyState.style.display = '';
-      els.dayView.style.display = 'none';
+      els.dayView.style.display    = 'none';
       renderCalendario();
     });
+
+    // Filtro por ciudad
+    els.filtroBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+
+        // Actualizar estado y estilos de botones
+        estado.filtro = btn.dataset.ciudad;
+        els.filtroBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        // Redibujar el calendario con el nuevo filtro
+        renderCalendario();
+
+        // Si hay un día seleccionado, actualizar su lista de eventos
+        if (estado.diaSeleccionado) {
+          renderEventos(estado.diaSeleccionado);
+        }
+      });
+    });
   }
+
 
   // ─────────────────────────────────────────────────────────────
   // INICIALIZACIÓN
