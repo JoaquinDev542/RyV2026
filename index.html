@@ -65,6 +65,7 @@
     <li><a href="#actividades">Actividades</a></li>
     <li><a href="#galeria">Galería</a></li>
     <li><a href="#testimonios">Testimonios</a></li>
+      <li><a href="#calendario">Calendario</a></li>
     <li><a href="#contacto">Contacto</a></li>
   </ul>
   <a href="#unete" class="nav-cta">Únete</a>
@@ -78,6 +79,7 @@
   <a href="#actividades" onclick="closeMobile()">Actividades</a>
   <a href="#galeria" onclick="closeMobile()">Galería</a>
   <a href="#testimonios" onclick="closeMobile()">Testimonios</a>
+  <a href="#calendario" onclick="closeMobile()">Calendario</a>
   <a href="#contacto" onclick="closeMobile()">Contacto</a>
   <a href="#unete" onclick="closeMobile()">Únete ahora</a>
 </div>
@@ -466,7 +468,12 @@
     <span class="tag">Agenda</span>
     <h2 class="section-title">Calendario de actividades</h2>
     <p class="cal-intro">Consulta las actividades del mes. Haz clic en un día para ver los detalles.</p>
-
+<!-- Filtro de ciudades -->
+<div class="cal-filtros" id="cal-filtros">
+  <button class="cal-filtro-btn active" data-ciudad="todas">Todas</button>
+  <button class="cal-filtro-btn" data-ciudad="arganda">Arganda del Rey</button>
+  <button class="cal-filtro-btn" data-ciudad="barcelona">Barcelona</button>
+</div>
     <div class="cal-layout">
 
       <!-- Panel izquierdo: calendario -->
