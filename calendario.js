@@ -408,23 +408,9 @@ const CONTACTOS = {
   // INICIALIZACIÓN
   // ─────────────────────────────────────────────────────────────
 
-  function init() {
+ function init() {
   initEventos();
   renderCalendario();
-
-  // seleccionar automáticamente hoy si tiene actividades
-  const hoy = new Date();
-  const hoyKey = toKey(
-    hoy.getFullYear(),
-    hoy.getMonth(),
-    hoy.getDate()
-  );
-
-  const actividadesHoy = getActividadesDia(hoyKey);
-
-  if (actividadesHoy.length > 0) {
-    seleccionarDia(hoyKey);
-  }
 }
 
   if (document.readyState === 'loading') {
