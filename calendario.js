@@ -25,8 +25,8 @@
 // Para cambiar un número, edita solo este objeto.
 // ─────────────────────────────────────────────────────────────
 const CONTACTOS = {
-  arganda:   '600 000 000',   // ← pon aquí el teléfono de Arganda
-  barcelona: '611 111 111',   // ← pon aquí el teléfono de Barcelona
+  arganda:   '679 829 993',   // ← pon aquí el teléfono de Arganda
+  barcelona: '680 155 598',   // ← pon aquí el teléfono de Barcelona
 };
 
   // ─────────────────────────────────────────────────────────────
