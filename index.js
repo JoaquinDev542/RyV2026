@@ -61,7 +61,7 @@ const categories = {
       { src: "galeria/equipo/equipofrontal.heic", alt: "Equipo 1" },
       { src: "galeria/equipo/equipo1.jpg", alt: "Equipo 2" },
       { src: "galeria/equipo/equipo3.jpg", alt: "Equipo 3" },
-      { src: "galeria/equipo/.jpg",   alt: "Equipo 4" },
+      { src: "galeria/equipo/equipo4.jpg",   alt: "Equipo 4" },
     ]
   }
 };
